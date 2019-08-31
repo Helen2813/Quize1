@@ -33,15 +33,16 @@
                 else if (btnContent === 'Далее' || btnContent === 'Получить результаты') {
                     model.setCurrentData(view.getData())
                     view.setPlate(model.nextPlate(), model.getCurrentData())
+
                 }
                 else if (btnContent === 'Назад') {
                     view.setPlate(model.backPlate(), model.getCurrentData())
                 }
 
             }
-            view.radioBlockClickHandler = function (rbContent) {
-                console.log(this)
-            }
+            // view.radioBlockClickHandler = function (rbContent) {
+            //     //console.log(this)
+            // }
 
         }
     }

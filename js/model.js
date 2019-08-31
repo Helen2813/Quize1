@@ -3,7 +3,7 @@
     window.createModel = function createModel () {// в window вкладываем метод createModel, который функцией по созданию новой модели.
         const model = {
             currentPlate: 1,
-            datum: [null, null, null, null, null, null]
+            datum: [null, null, [], null]
         }
         const api = {}//колекция методов, которые доступны извне при использовании модуля другими модулями или в обычном констексте
 //ниже доступные методы
@@ -13,7 +13,6 @@
 
         api.setCurrentData = function setCurrentData (data) {
             model.datum[model.currentPlate - 1] = data
-
         }
 
         api.getCurrentData = function getCurrentData () {

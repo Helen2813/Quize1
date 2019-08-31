@@ -46,27 +46,49 @@
             const viewElement = text2html(temlate)  //будет ссылаться на самый первый элемент верстки - div.app
             const buttons = viewElement.querySelectorAll('.button')
             const radioBlocks = viewElement.querySelectorAll('.radio-block')
+            const checkboxBlocks = viewElement.querySelectorAll('.checkbox-block')
+            const cardBlocks = viewElement.querySelectorAll('.card-block')
             rootElement.innerHTML = ''
             rootElement.append(viewElement)
 
-            if (number === 2 ) {
+            if (number === 2) {
                 for (let j = 0; j < radioBlocks.length; j++) {
                     radioBlocks[j].classList.remove('radio-block--active')
                 }
                 if (initData !== null) {//если отсутствуют начальные данные
+                    for (let j = 0; j < radioBlocks.length; j++) {
+                        const radioBlock = radioBlocks[j]
+                        const textElement = radioBlock.querySelector('.radio-block__text')
 
-
-                        for (let j = 0; j < radioBlocks.length; j++) {
-                            const radioBlock = radioBlocks[j]
-                            const textElement = radioBlock.querySelector('.radio-block__text')
-
-                            if (textElement.textContent === initData) {
-                                radioBlock.classList.add('radio-block--active')
-                                radioBlock.click()
-                                break
-                            }
+                        if (textElement.textContent === initData) {
+                            radioBlock.classList.add('radio-block--active')
+                            radioBlock.click()
+                            break
                         }
+                    }
 
+                }
+            }
+
+            else if (number === 3) {
+                for (let j = 0; j < checkboxBlocks.length; j++) {
+                    checkboxBlocks[j].classList.remove('checkbox-block--active')
+                }
+                for (let j = 0; j < checkboxBlocks.length; j++) {
+                    const checkbox = checkboxBlocks[j]
+                    const textElement = checkbox.querySelector('.checkbox-block__text')
+
+                    if (textElement.textContent === initData) {
+                        checkbox.classList.add('checkbox-block--active')
+                        checkbox.click()
+                        break
+                    }
+                }
+            }
+            else if (number === 4) {
+                for (let j = 0; j < cardBlocks.length; j++) {
+                    const cardBlock = cardBlocks[j]
+                    const textElement = cardBlock.querySelector('.card-block__text')
                 }
             }
 
@@ -91,6 +113,30 @@
 
                     for (let j = 0; j < radioBlocks.length; j++) {
                         radioBlocks[j].classList.remove('radio-block--active')
+                    }
+                    radioBlock.classList.add('radio-block--active')
+                })
+            }
+            for (let i = 0; i < checkboxBlocks.length; i++) {
+                const radioBlock = checkboxBlocks[i]
+                radioBlock.addEventListener('click', function (event) {
+                    event.stopImmediatePropagation()
+                    const textElement = radioBlock.querySelector('.checkbox-block__text')
+                    data.push(textElement.textContent)
+                    api.radioBlockClickHandler(data)
+                })
+            }
+            for (let i = 0; i < cardBlocks.length; i++) {
+                const radioBlock = cardBlocks[i]
+
+                radioBlock.addEventListener('click', function (event){
+                    event.stopImmediatePropagation()
+                    const textElement = radioBlock.querySelector('.card-block__text')
+                    data = textElement.textContent
+                    api.radioBlockClickHandler(data)
+
+                    for (let j = 0; j < cardBlocks.length; j++) {
+                        cardBlocks[j].classList.remove('radio-block--active')
                     }
                     radioBlock.classList.add('radio-block--active')
                 })
@@ -276,9 +322,7 @@
 \t\t\t\t\t<div class="card-block__img">
 \t\t\t\t\t\t<img src="img/pictures/mobile.jpg" alt="Img">
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class="card-block__text">
-\t\t\t\t\t\tМобильные приложения
-\t\t\t\t\t</div>
+\t\t\t\t\t<div class="card-block__text">Мобильные приложения</div>
 \t\t\t\t</label>
 \t\t\t\t<label class="card-block">
 \t\t\t\t\t<div class="card-block__radio">
@@ -288,9 +332,7 @@
 \t\t\t\t\t<div class="card-block__img">
 \t\t\t\t\t\t<img src="img/pictures/browser.jpg" alt="Img">
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class="card-block__text">
-\t\t\t\t\t\tСайты для всех браузеров и платформ
-\t\t\t\t\t</div>
+\t\t\t\t\t<div class="card-block__text">Сайты для всех браузеров и платформ</div>
 \t\t\t\t</label>
 \t\t\t\t<label class="card-block">
 \t\t\t\t\t<div class="card-block__radio">
@@ -301,9 +343,7 @@
 \t\t\t\t\t<div class="card-block__img">
 \t\t\t\t\t\t<img src="img/pictures/windows.jpg" alt="Img">
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class="card-block__text">
-\t\t\t\t\t\tПрограммы для Windows
-\t\t\t\t\t</div>
+\t\t\t\t\t<div class="card-block__text">Программы для Windows</div>
 \t\t\t\t</label>
 \t\t\t\t<label class="card-block">
 \t\t\t\t\t<div class="card-block__radio">
@@ -314,9 +354,7 @@
 \t\t\t\t\t<div class="card-block__img">
 \t\t\t\t\t\t<img src="img/pictures/linux.jpg" alt="Img">
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class="card-block__text">
-\t\t\t\t\t\tПрограммы для Linux
-\t\t\t\t\t</div>
+\t\t\t\t\t<div class="card-block__text">Программы для Linux</div>
 \t\t\t\t</label>
 \t\t\t</div>
 \t\t</div>
