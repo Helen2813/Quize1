@@ -25,7 +25,23 @@
             if (view === null || model === null) {
                 return //ничего не будет делать
             }
-            view.setPlate(1)
+            view.setPlate(model.getCurrentPlate())
+            view.buttonClickHandler = function (btnContent) {
+                if (btnContent === 'Пройти тест') {
+                    view.setPlate(model.nextPlate(), model.getCurrentData())
+                }
+                else if (btnContent === 'Далее' || btnContent === 'Получить результаты') {
+                    model.setCurrentData(view.getData())
+                    view.setPlate(model.nextPlate(), model.getCurrentData())
+                }
+                else if (btnContent === 'Назад') {
+                    view.setPlate(model.backPlate(), model.getCurrentData())
+                }
+
+            }
+            view.radioBlockClickHandler = function (rbContent) {
+                console.log(this)
+            }
 
         }
     }
