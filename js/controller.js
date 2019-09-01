@@ -30,13 +30,16 @@
                 if (btnContent === 'Пройти тест') {
                     view.setPlate(model.nextPlate(), model.getCurrentData())
                 }
-                else if (btnContent === 'Далее' || btnContent === 'Получить результаты') {
+                else if (btnContent === 'Далее') {
                     model.setCurrentData(view.getData())
                     view.setPlate(model.nextPlate(), model.getCurrentData())
-
+                   
                 }
                 else if (btnContent === 'Назад') {
                     view.setPlate(model.backPlate(), model.getCurrentData())
+                }
+                else if (btnContent === 'Получить результаты') {
+                    view.setPlate(model.nextPlate(), model.getCurrentData())
                 }
 
             }
@@ -45,6 +48,8 @@
             // }
 
         }
+
+
     }
 
 })();

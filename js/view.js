@@ -21,7 +21,7 @@
 
         api.setPlate = function setPlate (number, initData = null) {//принимает в качестве арг. №карточки, который нужно отобразить
             let temlate = null
-            data = initData//
+            data = initData
             if (number === 1) {
                 temlate = cardTemplate_1
             }
@@ -45,6 +45,8 @@
             }
             const viewElement = text2html(temlate)  //будет ссылаться на самый первый элемент верстки - div.app
             const buttons = viewElement.querySelectorAll('.button')
+            const getResultBtn = viewElement.querySelector('.button--huge')
+            const input = viewElement.querySelector('.input-email')
             const radioBlocks = viewElement.querySelectorAll('.radio-block')
             const checkboxBlocks = viewElement.querySelectorAll('.checkbox-block')
             const cardBlocks = viewElement.querySelectorAll('.card-block')
@@ -91,6 +93,14 @@
                     const textElement = cardBlock.querySelector('.card-block__text')
                 }
             }
+            else if (number === 5) {
+                getResultBtn.addEventListener('click', function (event) {
+                    let email = input.value
+                    console.log(email)
+                    model.check()
+
+                })
+            }
 
             for (let i = 0; i < buttons.length; i++) {
                 const button = buttons[i]
@@ -100,6 +110,7 @@
                     api.buttonClickHandler(this.textContent)
                 })
             }
+
 
             for (let i = 0; i < radioBlocks.length; i++) {
                 const radioBlock = radioBlocks[i]
@@ -145,12 +156,14 @@
             return true
         }
         return api
+        
     }
     function text2html (text) {
         const divElement = document.createElement('div')
         divElement.innerHTML = text
         return divElement.firstElementChild
     }
+
 
 //card 1
     const cardTemplate_1 = `<div class="plate">
